@@ -14,21 +14,25 @@ import { ModuleDemoModule } from './module-demo/module-demo.module';
  * @ignore
  */
 @NgModule({
-  declarations: [
-    AppComponent,
-    DummyComponent,
-    DemoComponent
-  ],
+  declarations: [AppComponent, DummyComponent, DemoComponent],
   imports: [
     BrowserModule,
     FormsModule,
-    MathJaxModule.forRoot(),
+    MathJaxModule.forRoot(
+      {
+        version: '2.7.5',
+        config: 'TeX-AMS_HTML',
+        hostname: 'cdnjs.cloudflare.com',
+      },
+      {
+        tex2jax: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+      },
+    ),
     MarkdownModule.forRoot(),
     AppRoutingModule,
     ModuleDemoModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
